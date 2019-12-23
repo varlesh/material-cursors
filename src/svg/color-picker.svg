@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="svg24" width="32" height="32" version="1.1">
+ <defs id="defs28">
+  <filter id="filter886" style="color-interpolation-filters:sRGB" width="1.096" height="1.096" x="-.05" y="-.05">
+   <feGaussianBlur id="feGaussianBlur888" stdDeviation=".22"/>
+  </filter>
+  <filter id="filter914" style="color-interpolation-filters:sRGB" width="1.096" height="1.096" x="-.05" y="-.05">
+   <feGaussianBlur id="feGaussianBlur916" stdDeviation=".2"/>
+  </filter>
+  <filter id="filter934" style="color-interpolation-filters:sRGB" width="1.096" height="1.096" x="-.05" y="-.05">
+   <feGaussianBlur id="feGaussianBlur936" stdDeviation=".292"/>
+  </filter>
+ </defs>
+ <path id="path868" style="opacity:0.3;fill:#000000;filter:url(#filter934)" d="m 19.608232,11.477306 c -0.78345,-0.7834 -2.051137,-0.789587 -2.8283,0 l -6.263767,6.3639 c -0.52433,0.5244 -0.68983,1.2607 -0.51233,1.9265 l -2.416233,2.3161 c -0.78346,0.7835 -0.78348,2.0449 4.3e-6,2.8284 0.78345,0.7835 2.061658,0.799907 2.8284007,0 l 2.316,-2.416175 c 0.66592,0.1775 1.4023,0.012 1.9266,-0.5124 l 6.363999,-6.263725 c 0.78342,-0.7834 0.78341,-2.0449 -3.7e-5,-2.8284 l -1.4142,-1.4142 z"/>
+ <path id="path2" style="fill:#607d8b" d="m 19.608232,10.977475 c -0.78345,-0.7834 -2.051137,-0.789587 -2.8283,0 l -6.263767,6.3639 c -0.52433,0.5244 -0.68983,1.2607 -0.51233,1.9265 l -2.416233,2.3161 c -0.78346,0.7835 -0.78348,2.0449 4.3e-6,2.8284 0.78345,0.7835 2.061658,0.799907 2.8284007,0 l 2.316,-2.416175 c 0.66592,0.1775 1.4023,0.012 1.9266,-0.5124 l 6.363999,-6.263725 c 0.78342,-0.7834 0.78341,-2.0449 -3.7e-5,-2.8284 l -1.4142,-1.4142 z"/>
+ <rect id="rect870" style="opacity:0.3;fill:#000000;stroke-width:0.99707633;filter:url(#filter886)" width="7.977" height="11.965" x="18.99" y="-10.58" rx="3.546" ry="3.988" transform="rotate(45)"/>
+ <rect id="rect8" style="fill:#ffbc48;stroke-width:0.99707633" width="7.977" height="11.965" x="18.64" y="-10.93" rx="3.546" ry="3.988" transform="rotate(45)"/>
+ <rect id="rect872" style="opacity:0.3;fill:#000000;stroke-width:0.98103678;filter:url(#filter914)" width="11.772" height="2.943" x="17.09" y="-1.12" rx=".491" ry=".491" transform="rotate(45)"/>
+ <rect id="rect14" style="fill:#ffbc48;stroke-width:0.98103678" width="11.772" height="2.943" x="16.74" y="-1.47" rx=".491" ry=".491" transform="rotate(45)"/>
+ <rect id="rect16" style="fill:#4e79ff;stroke-width:0.96085173" width="1.922" height="7.687" x="21.67" y="3.23" rx=".961" ry=".961" transform="rotate(45)"/>
+</svg>
