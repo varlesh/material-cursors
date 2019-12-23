@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Material cursors based on KDE Breeze
+# Material cursors, based on KDE Breeze
 # Copyright (c) 2016 Keefer Rourke <keefer.rourke@gmail.com>
+# Modified to include white cursors by Efus10n - 4 Mar 2019
 
 function create {
 	cd "$SRC"
@@ -15,7 +16,12 @@ function create {
 	cd $SRC
 
 	# generate cursors
-	BUILD="$SRC"/../build
+	if [[ "$THEME" =~ Light$ ]]; then
+		BUILD="$SRC"/../material_light_cursors
+    elif [[ "$THEME" =~ Dark$ ]]; then
+		BUILD="$SRC"/../material_dark_cursors
+	else BUILD="$SRC"/../material_cursors
+	fi
 	OUTPUT="$BUILD"/cursors
 	ALIASES="$SRC"/cursorList
 
@@ -67,3 +73,11 @@ SRC=$PWD/src
 THEME="Material Cursors"
 
 create svg
+
+THEME="Material Cursors Light"
+
+create svg-light
+
+THEME="Material Cursors Dark"
+
+create svg-dark
