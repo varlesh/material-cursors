@@ -1,83 +1,92 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Material cursors, based on KDE Breeze
 # Copyright (c) 2016 Keefer Rourke <keefer.rourke@gmail.com>
-# Modified to include white cursors by Efus10n - 4 Mar 2019
+# Copyright (c) 2020 Sergei Eremenko <https://github.com/SmartFinn>
 
-function create {
-	cd "$SRC"
-	mkdir -p x1 x1_25 x1_5 x2
-	cd "$SRC"/$1
-	find . -name "*.svg" -type f -exec sh -c 'inkscape -z -e "../x1/${0%.svg}.png" -w 32 -h 32 $0' {} \;
-	find . -name "*.svg" -type f -exec sh -c 'inkscape -z -e "../x1_25/${0%.svg}.png" -w 40 -w 40 $0' {} \;
-	find . -name "*.svg" -type f -exec sh -c 'inkscape -z -e "../x1_5/${0%.svg}.png" -w 48 -w 48 $0' {} \;
-	find . -name "*.svg" -type f -exec sh -c 'inkscape -z -e "../x2/${0%.svg}.png" -w 64 -w 64 $0' {} \;
+set -e
 
-	cd $SRC
+convert_to_png() {
+	local src_dir="$1"
+	local out_dir="${2:-.}"
+	local file size bitmap_file png_mtime svg_mtime
 
-	# generate cursors
-	if [[ "$THEME" =~ Light$ ]]; then
-		BUILD="$SRC"/../material_light_cursors
-    elif [[ "$THEME" =~ Dark$ ]]; then
-		BUILD="$SRC"/../material_dark_cursors
-	else BUILD="$SRC"/../material_cursors
-	fi
-	OUTPUT="$BUILD"/cursors
-	ALIASES="$SRC"/cursorList
+	[ -d "$src_dir" ] || return 1
+	[ -d "$out_dir" ] || mkdir -p "$out_dir"
 
-	if [ ! -d "$BUILD" ]; then
-		mkdir "$BUILD"
-	fi
-	if [ ! -d "$OUTPUT" ]; then
-		mkdir "$OUTPUT"
-	fi
+	# shellcheck disable=SC2016
+	for file in "$src_dir"/*.svg; do
+		[ -f "$file" ] || continue
+		for size in 32 40 48 64; do
+			bitmap_file="${out_dir%/}/$(basename "$file" .svg)_${size}.png"
 
-	echo -ne "Generating cursor theme...\\r"
-	for CUR in config/*.cursor; do
-		BASENAME="$CUR"
-		BASENAME="${BASENAME##*/}"
-		BASENAME="${BASENAME%.*}"
-		
-		xcursorgen "$CUR" "$OUTPUT/$BASENAME"
-	done
-	echo -e "Generating cursor theme... DONE"
+			svg_mtime="$(stat -c '%Y' "$file")"
+			png_mtime="$(stat -c '%Y' "$bitmap_file" 2>/dev/null || echo 0)"
 
-	cd "$OUTPUT"	
+			if (( png_mtime > svg_mtime )); then
+				# skip if PNG file exists and the modification time is
+				# newer than on SVG file
+				continue
+			fi
 
-	#generate aliases
-	echo -ne "Generating shortcuts...\\r"
-	while read ALIAS; do
-		FROM="${ALIAS#* }"
-		TO="${ALIAS% *}"
-
-		if [ -e $TO ]; then
-			continue
-		fi
-		ln -sr "$FROM" "$TO"
-	done < "$ALIASES"
-	echo -e "Generating shortcuts... DONE"
-
-	cd "$PWD"
-
-	echo -ne "Generating Theme Index...\\r"
-	INDEX="$OUTPUT/../index.theme"
-	if [ ! -e "$OUTPUT/../$INDEX" ]; then
-		touch "$INDEX"
-		echo -e "[Icon Theme]\nName=$THEME\n" > "$INDEX"
-	fi
-	echo -e "Generating Theme Index... DONE"
+			printf '%s\0%s\0%s\0' "$bitmap_file" "$size" "$file"
+		done
+	done | xargs -r -0 -n 3 -P "$(nproc)" sh -c 'inkscape -z -e "$0" -w $1 -h $1 "$2"'
 }
 
-# generate pixmaps from svg source
-SRC=$PWD/src
-THEME="Material Cursors"
+convert_to_x11cursor() {
+	local src_dir="$1"
+	local out_dir="$2"
+	local config base_name
 
-create svg
+	[ -d "$src_dir" ] || return 1
 
-THEME="Material Cursors Light"
+	if [ -d "$out_dir" ]; then
+		rm -rf "$out_dir"
+	fi
 
-create svg-light
+	mkdir -p "$out_dir"
 
-THEME="Material Cursors Dark"
+	echo -ne "Generating cursor theme...\\r"
+	for config in "$CONFIG_DIR"/*.cursor; do
+		[ -f "$config" ] || continue
+		base_name="$(basename "$config" .cursor)"
+		xcursorgen -p "$src_dir" "$config" "$out_dir/$base_name"
+	done
+	echo -e "Generating cursor theme... DONE"
+}
 
-create svg-dark
+create_aliases() {
+	local out_dir="$1"
+	local symlink target
+
+	echo -ne "Generating shortcuts...\\r"
+	while read -r symlink target; do
+		[ -e "$out_dir/$symlink" ] && continue
+		ln -sf "$target" "$out_dir/$symlink"
+	done < "$ALIASES"
+	echo -e "Generating shortcuts... DONE"
+}
+
+SCRIPT_DIR="$(dirname "$0")"
+
+: "${SRC_DIR:="$SCRIPT_DIR"/src}"
+: "${OUT_DIR:="$SCRIPT_DIR"/dist}"
+: "${BUILD_DIR:="$SCRIPT_DIR"/build}"
+: "${ALIASES:="$SCRIPT_DIR"/src/cursorList}"
+: "${CONFIG_DIR:="$SCRIPT_DIR"/src/config}"
+
+for theme_src_dir in "$SRC_DIR"/*; do
+	# skip directory that not contains index.theme file
+	[ -f "$theme_src_dir/index.theme" ] || continue
+	theme_name="$(basename "$theme_src_dir")"
+	theme_build_dir="$BUILD_DIR/$theme_name"
+	theme_out_dir="$OUT_DIR/$theme_name"
+
+	echo "=> Workon '$theme_src_dir' ..."
+	convert_to_png "$theme_src_dir" "$theme_build_dir"
+	convert_to_x11cursor "$theme_build_dir" "$theme_out_dir"/cursors
+	create_aliases "$theme_out_dir"/cursors
+
+	cp -f "$theme_src_dir/index.theme" "$theme_out_dir"/
+done
