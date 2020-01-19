@@ -16,8 +16,7 @@ install:
 uninstall:
 	-rm -rf $(foreach cursor_theme,$(CURSOR_THEMES),$(DESTDIR)$(PREFIX)/share/icons/$(cursor_theme))
 
-dist: _get_version
-	$(MAKE) $(CURSOR_THEMES)
+dist: _get_version $(CURSOR_THEMES)
 
 _get_version:
 	$(eval VERSION := $(shell git show -s --format=%cd --date=format:%Y%m%d HEAD))
