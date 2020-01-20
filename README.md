@@ -1,5 +1,9 @@
 # Material Cursors
 
+### Install build version
+
+https://www.pling.com/p/1346778/
+
 ### Manual Install
 
 1. Install dependencies:
@@ -19,3 +23,6 @@
     ```
 
 3. Choose a theme in the Settings or in the Tweaks tool.
+
+
+
