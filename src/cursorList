@@ -39,6 +39,7 @@ dnd-none dnd-move
 down-arrow default
 draft pencil
 e-resize size_hor
+ew-resize size_hor
 fleur default
 forbidden no-drop
 grab openhand
@@ -60,6 +61,7 @@ ll_angle bottom_left_corner
 lr_angle bottom_right_corner
 move dnd-move
 n-resize size_ver
+ns-resize size_ver
 ne-resize size_bdiag
 nesw-resize size_bdiag
 no-drop not-allowed
