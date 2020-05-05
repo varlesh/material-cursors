@@ -6,6 +6,8 @@
 
 set -e
 
+INKSCAPE_VERSION=$(inkscape --version 2>/dev/null | awk '/Inkscape[ ]/ {print $2; exit}')
+
 convert_to_png() {
 	local src_dir="$1"
 	local out_dir="${2:-.}"
@@ -29,9 +31,15 @@ convert_to_png() {
 				continue
 			fi
 
-			printf '%s\0%s\0%s\0' "$bitmap_file" "$size" "$file"
+			if [ "${INKSCAPE_VERSION%%.*}" -eq 0 ]; then
+				printf 'inkscape -z -e "%s" -w %s -h %s "%s"\0' \
+					"$bitmap_file" "$size" "$size" "$file"
+			else
+				printf 'inkscape -o "%s" -w %s -h %s "%s"\0' \
+					"$bitmap_file" "$size" "$size" "$file"
+			fi
 		done
-	done | xargs -r -0 -n 3 -P "$(nproc)" sh -c 'inkscape -z -e "$0" -w $1 -h $1 "$2"'
+	done | xargs -r -0 -n 1 -P "$(nproc)" sh -c
 }
 
 convert_to_x11cursor() {
