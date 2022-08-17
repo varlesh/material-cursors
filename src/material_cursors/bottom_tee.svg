@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg2"
+   width="32"
+   height="32"
+   version="1.1"
+   sodipodi:docname="bottom_tee.svg"
+   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="true"
+     inkscape:zoom="12.04"
+     inkscape:cx="1.1212625"
+     inkscape:cy="16.0299"
+     inkscape:window-width="1920"
+     inkscape:window-height="1002"
+     inkscape:window-x="0"
+     inkscape:window-y="46"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid944" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4">
+    <filter
+       id="filter863"
+       style="color-interpolation-filters:sRGB"
+       width="1.096"
+       height="1.096"
+       x="-0.048"
+       y="-0.048">
+      <feGaussianBlur
+         id="feGaussianBlur865"
+         stdDeviation=".44" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter2279"
+       x="-0.048"
+       y="-0.048"
+       width="1.096"
+       height="1.096">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.44"
+         id="feGaussianBlur2281" />
+    </filter>
+  </defs>
+  <path
+     style="color:#000000;fill:#010101;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;opacity:0.75;fill-opacity:1"
+     d="M 15.5,4 C 14.132299,4 13,5.1322986 13,6.5 V 22 H 6.5 C 5.1322986,22 4,23.132299 4,24.5 v 1 C 4,26.867701 5.1322986,28 6.5,28 h 19 c 1.367701,0 2.5,-1.132299 2.5,-2.5 v -1 C 28,23.132299 26.867701,22 25.5,22 H 19 V 6.5 C 19,5.1322986 17.867701,4 16.5,4 Z m 0,2 h 1 C 16.794297,6 17,6.2057031 17,6.5 V 23 a 1.0001,1.0001 0 0 0 1,1 h 7.5 c 0.294297,0 0.5,0.205703 0.5,0.5 v 1 C 26,25.794297 25.794297,26 25.5,26 H 6.5 C 6.2057031,26 6,25.794297 6,25.5 v -1 C 6,24.205703 6.2057031,24 6.5,24 H 14 a 1.0001,1.0001 0 0 0 1,-1 V 6.5 C 15,6.2057031 15.205703,6 15.5,6 Z"
+     id="path1847" />
+  <path
+     id="path2159"
+     style="opacity:0.3;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.47654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;filter:url(#filter2279)"
+     d="M 15.5,5.5 C 14.669,5.5 14,6.169 14,7 V 23.5 H 6.5 C 5.669,23.5 5,24.169 5,25 v 1 c 0,0.831 0.669,1.5 1.5,1.5 h 19 c 0.831,0 1.5,-0.669 1.5,-1.5 v -1 c 0,-0.831 -0.669,-1.5 -1.5,-1.5 H 18 V 7 C 18,6.169 17.331,5.5 16.5,5.5 Z"
+     sodipodi:nodetypes="sscsssccssscsss" />
+  <path
+     id="rect837"
+     style="opacity:1;fill:#526d78;fill-opacity:1;stroke:none;stroke-width:1.47654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+     d="M 15.5,5 C 14.669,5 14,5.669 14,6.5 V 23 H 6.5 C 5.669,23 5,23.669 5,24.5 v 1 C 5,26.331 5.669,27 6.5,27 h 19 c 0.831,0 1.5,-0.669 1.5,-1.5 v -1 C 27,23.669 26.331,23 25.5,23 H 18 V 6.5 C 18,5.669 17.331,5 16.5,5 Z"
+     sodipodi:nodetypes="sscsssccssscsss" />
+</svg>
