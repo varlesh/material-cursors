@@ -31,7 +31,7 @@ undo_release: _get_version
 	-git tag -d $(VERSION)
 	-git push --delete origin $(VERSION)
 
-$(CURSOR_THEMES):
+$(CURSOR_THEMES): _get_version
 	cp -f AUTHORS LICENSE $@
 	tar -C $(dir $@) -czf $(notdir $@)_$(VERSION).tar.gz $(notdir $@)
 
